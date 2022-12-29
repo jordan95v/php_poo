@@ -2,6 +2,8 @@
 
 namespace Classes\Abstracts;
 
+use Classes\Enum\Type;
+
 abstract class Character
 {
     public function __construct(
@@ -13,8 +15,13 @@ abstract class Character
         protected ?Spell $atkSpell,
         protected ?Spell $defSpell,
         protected ?Spell $healSpell,
-        //protected ?Type $type
+        protected ?Type $type
     ) {
+    }
+
+    public function getType(): Type
+    {
+        return $this->type;
     }
 
     public function getHealth(): float
@@ -38,18 +45,48 @@ abstract class Character
 
         return $this->defense / 100;
     }
-
     public function attack(Character $character): void
     {
         // echo "{$this} attaque ".lcfirst($character).($this->weapon ? " avec ".lcfirst($this->weapon->getName()) : " à mains nues").PHP_EOL;
-        $character->takesDamages($this->getPhysicalDamages(), $this->getMagicalDamages());
+        $character->takesDamages($this->getPhysicalDamages(), $this->getMagicalDamages(), $character->getType());
     }
 
-    public function takesDamages(float $physicalDamages, float $magicalDamages): void
+    public function takesDamages(float $physicalDamages, float $magicalDamages, Type $atkType): void
     {
         $damages = $physicalDamages + $magicalDamages;
-        $damagesTaken = $damages - $damages * $this->getDefense();
 
+        switch($this->type){
+            case Type::WATER:
+                switch($atkType){
+                    case Type::FIRE:
+                        $damages *= 0.5;
+                        break;
+                    case Type::PLANT:
+                        $damages *= 2;
+                        break;
+                }
+            case Type::FIRE:
+                switch($atkType){
+                    case Type::WATER:
+                        $damages *= 0.5;
+                        break;
+                    case Type::PLANT:
+                        $damages *= 2;
+                        break;
+                }
+            case Type::PLANT:
+                switch($atkType){
+                    case Type::FIRE:
+                        $damages *= 2;
+                        break;
+                    case Type::WATER:
+                        $damages *= 0.5;
+                        break;
+                }
+        }
+
+        $damagesTaken = $damages - $damages * $this->getDefense();
+        
         if ($damagesTaken > $this->health) {
             $this->health = 0;
         } else {

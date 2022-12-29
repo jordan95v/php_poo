@@ -6,7 +6,7 @@ use Classes\Abstracts\PhysicalCharacter;
 
 class Soldier extends PhysicalCharacter
 {
-    public function __construct($atkSpell = null, $defSpell = null, $healSpell = null)
+    public function __construct($atkSpell = null, $defSpell = null, $healSpell = null, $type = null)
     {
         parent::__construct(
             health: 32,
@@ -16,7 +16,9 @@ class Soldier extends PhysicalCharacter
             mana: 50,
             atkSpell: $atkSpell,
             defSpell: $defSpell,
-            healSpell: $healSpell);
+            healSpell: $healSpell,
+            type: $type
+        );
     }
 
     public function getPhysicalDamages(): float
@@ -30,9 +32,9 @@ class Soldier extends PhysicalCharacter
         return $baseDamages;
     }
 
-    public function takesDamages(float $physicalDamages, float $magicalDamages): void
+    public function takesDamages(float $physicalDamages, float $magicalDamages, $type): void
     {
-        parent::takesDamages($physicalDamages, $magicalDamages * 0.8);
+        parent::takesDamages($physicalDamages, $magicalDamages * 0.8, $type);
     }
 
     public function __toString()

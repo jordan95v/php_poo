@@ -6,13 +6,14 @@ use Classes\Abstracts\MagicalCharacter;
 
 class Wizard extends MagicalCharacter
 {
-    public function __construct($atkSpell = null, $defSpell = null, $healSpell = null)
+    public function __construct($atkSpell = null, $defSpell = null, $healSpell = null, $type = null)
     {
         parent::__construct(health: 28, 
             defense: 56, 
             physicalDamages: 5, 
             magicalDamages: 11,
             mana: 150,
+            type: $type,
             atkSpell: $atkSpell,
             defSpell: $defSpell,
             healSpell: $healSpell
@@ -29,13 +30,13 @@ class Wizard extends MagicalCharacter
         return $baseDamages;
     }
 
-    public function takesDamages(float $physicalDamages, float $magicalDamages): void
+    public function takesDamages(float $physicalDamages, float $magicalDamages, $type): void
     {
         if (chance(10)) {
             // echo "{$this} subit moins de dégats grâce à la chance...".PHP_EOL;
-            parent::takesDamages($physicalDamages * 0.9, $magicalDamages * 0.9);
+            parent::takesDamages($physicalDamages * 0.9, $magicalDamages * 0.9, $type);
         } else {
-            parent::takesDamages($physicalDamages, $magicalDamages);
+            parent::takesDamages($physicalDamages, $magicalDamages,$type);
         }
     }
 

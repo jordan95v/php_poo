@@ -6,13 +6,15 @@ use Classes\Abstracts\PhysicalCharacter;
 
 class Thief extends PhysicalCharacter
 {
-    public function __construct($atkSpell = null, $defSpell = null, $healSpell = null)
+    public function __construct($atkSpell = null, $defSpell = null, $healSpell = null, $type = null)
     {
-        parent::__construct(health: 34, 
+        parent::__construct(
+            health: 34, 
             defense: 33, 
             physicalDamages: 16, 
             magicalDamages: 4,
             mana: 75,
+            type: $type,
             atkSpell: $atkSpell,
             defSpell: $defSpell,
             healSpell: $healSpell
