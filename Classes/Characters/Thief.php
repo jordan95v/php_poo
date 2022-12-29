@@ -14,6 +14,7 @@ class Thief extends PhysicalCharacter
             physicalDamages: 16, 
             magicalDamages: 4,
             mana: 75,
+            manaRegen: 7,
             type: $type,
             atkSpell: $atkSpell,
             defSpell: $defSpell,
@@ -39,6 +40,14 @@ class Thief extends PhysicalCharacter
             return 1;
         }
         return parent::getDefense();
+    }
+
+    public function regenMana()
+    {
+        $this->mana += $this->manaRegen;
+        if($this->mana > 75){
+            $this->mana = 75;
+        }
     }
 
     public function __toString()

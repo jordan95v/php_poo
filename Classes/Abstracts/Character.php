@@ -11,7 +11,8 @@ abstract class Character
         private float $defense = 60,
         protected float $physicalDamages = 9,
         protected float $magicalDamages = 9,
-        private float $mana = 100,
+        protected float $mana = 100,
+        protected float $manaRegen = 10,
         protected ?Spell $atkSpell,
         protected ?Spell $defSpell,
         protected ?Spell $healSpell,
@@ -19,9 +20,17 @@ abstract class Character
     ) {
     }
 
+
+    abstract public function regenMana();
+
     public function getType(): Type
     {
         return $this->type;
+    }
+
+    public function getMana(): int
+    {
+        return $this->mana;
     }
 
     public function getHealth(): float

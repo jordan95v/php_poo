@@ -14,6 +14,7 @@ class Soldier extends PhysicalCharacter
             physicalDamages: 8, 
             magicalDamages: 0,
             mana: 50,
+            manaRegen: 10,
             atkSpell: $atkSpell,
             defSpell: $defSpell,
             healSpell: $healSpell,
@@ -35,6 +36,14 @@ class Soldier extends PhysicalCharacter
     public function takesDamages(float $physicalDamages, float $magicalDamages, $type): void
     {
         parent::takesDamages($physicalDamages, $magicalDamages * 0.8, $type);
+    }
+
+    public function regenMana()
+    {
+        $this->mana += $this->manaRegen;
+        if($this->mana > 50){
+            $this->mana = 50;
+        }
     }
 
     public function __toString()

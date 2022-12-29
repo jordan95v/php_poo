@@ -1,22 +1,22 @@
 Syllabus Projet POO electif
 Projet
 On fait les DLCs du jeu de combat tour par tour.
-1. Creez une classe Spell qui possede
-un nom
-une description
-un cout en mana
-2. Implementez un systeme d'elements (eau, feu, plante) en triade (comme Pokemon)
-dans lequel L'eau bat le feu, le feu bat la plante et la plante bat l'eau.
-3. Declinez vos personnages pour avoir la possibilite d'en creer selon differents
-elements.
-Les degats infliges par un personnage d'un element, a un autre personnage d'un
-autre element, ont un bonus ou un malus en fonction de leur position dans la triade.
-(ex: un Personnage de feu qui attaque un Personnage d'eau fera moins de degat
-que si il attaquait un Personnage plante)
+//1. Creez une classe Spell qui possede
+//un nom
+//une description
+//un cout en mana
+//2. Implementez un systeme d'elements (eau, feu, plante) en triade (comme Pokemon)
+//dans lequel L'eau bat le feu, le feu bat la plante et la plante bat l'eau.
+//3. Declinez vos personnages pour avoir la possibilite d'en creer selon differents
+//elements.
+//Les degats infliges par un personnage d'un element, a un autre personnage d'un
+//autre element, ont un bonus ou un malus en fonction de leur position dans la triade.
+//(ex: un Personnage de feu qui attaque un Personnage d'eau fera moins de degat
+//que si il attaquait un Personnage plante)
 4. Creez differents Spell :
 sort de defense (Bonus de defense pour le personnage qui equipe le sort)
-sort de degats (inflige des degats physiques ou magiques au lieu d'attaquer
-avec son arme, **ce sort utilise 1 tour)
+//sort de degats (inflige des degats physiques ou magiques au lieu d'attaquer
+//avec son arme, **ce sort utilise 1 tour)
 sort de soin (Soigne le personnage, ce sort utilise 1 tour et le personnage ne
 peut donc pas attaquer s'il se soigne)
 5. Modifiez vos personnages pour qu'en plus de l'arme, ils puissent equiper 3 sorts (1

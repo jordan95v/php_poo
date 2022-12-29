@@ -12,7 +12,8 @@ class Wizard extends MagicalCharacter
             defense: 56, 
             physicalDamages: 5, 
             magicalDamages: 11,
-            mana: 150,
+            mana: 100,
+            manaRegen: 15,
             type: $type,
             atkSpell: $atkSpell,
             defSpell: $defSpell,
@@ -37,6 +38,14 @@ class Wizard extends MagicalCharacter
             parent::takesDamages($physicalDamages * 0.9, $magicalDamages * 0.9, $type);
         } else {
             parent::takesDamages($physicalDamages, $magicalDamages,$type);
+        }
+    }
+
+    public function regenMana()
+    {
+        $this->mana += $this->manaRegen;
+        if($this->mana > 100){
+            $this->mana = 100;
         }
     }
 
