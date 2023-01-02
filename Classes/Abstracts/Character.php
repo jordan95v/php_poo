@@ -20,7 +20,6 @@ abstract class Character
     ) {
     }
 
-
     abstract public function regenMana();
 
     public function getType(): Type

@@ -8,6 +8,6 @@ class RodOfAges extends MagicalWeapon
 {
     public function __construct()
     {
-        parent::__construct("Le baton des vieux", "Pas la branche la plus verte de l'arbre.", 27);
+        parent::__construct("The old rod", "Not the freshed branch on the tree.", 27);
     }
 }

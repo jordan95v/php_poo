@@ -2,6 +2,7 @@
 
 # todo
 # Finir de créer les spells
+# Finir les armes
 
 require_once('./autoload.php');
 require_once('./functions.php');

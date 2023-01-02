@@ -3,9 +3,12 @@
 namespace Classes\Characters;
 
 use Classes\Abstracts\PhysicalCharacter;
+use Traits\HasPhysicalWeapon;
 
 class Soldier extends PhysicalCharacter
 {
+    use HasPhysicalWeapon;
+
     public function __construct($atkSpell = null, $defSpell = null, $healSpell = null, $type = null)
     {
         parent::__construct(

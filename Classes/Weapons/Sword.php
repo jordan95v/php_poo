@@ -4,10 +4,10 @@ namespace Classes\Weapons;
 
 use Classes\Abstracts\PhysicalWeapon;
 
-class Cutlass extends PhysicalWeapon
+class Sword extends PhysicalWeapon
 {
     public function __construct()
     {
-        parent::__construct("Little knife", "Use by sneaky thief", 30);
+        parent::__construct("The big sword", "Sword used by trained soldier", 25);
     }
 }

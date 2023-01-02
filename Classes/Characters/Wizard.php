@@ -8,9 +8,10 @@ class Wizard extends MagicalCharacter
 {
     public function __construct($atkSpell = null, $defSpell = null, $healSpell = null, $type = null)
     {
-        parent::__construct(health: 28, 
-            defense: 56, 
-            physicalDamages: 5, 
+        parent::__construct(
+            health: 28,
+            defense: 56,
+            physicalDamages: 5,
             magicalDamages: 11,
             mana: 100,
             manaRegen: 15,
@@ -37,14 +38,14 @@ class Wizard extends MagicalCharacter
             // echo "{$this} subit moins de dégats grâce à la chance...".PHP_EOL;
             parent::takesDamages($physicalDamages * 0.9, $magicalDamages * 0.9, $type);
         } else {
-            parent::takesDamages($physicalDamages, $magicalDamages,$type);
+            parent::takesDamages($physicalDamages, $magicalDamages, $type);
         }
     }
 
     public function regenMana()
     {
         $this->mana += $this->manaRegen;
-        if($this->mana > 100){
+        if ($this->mana > 100) {
             $this->mana = 100;
         }
     }
