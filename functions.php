@@ -12,6 +12,10 @@ use Classes\Spell\Warmog;
 use Classes\Spell\WaterCannon;
 use Classes\Abstracts\Spell;
 
+define("ATK_SPELL", [new FireBall(), new WaterCannon(), new LaserBeam()]);
+define("DEF_SPELL", [new Sunfire(), new Thornmail(), new Warmog()]);
+define("HEAL_SPELL", [new Heal(), new Rebirth(), new Restauration()]);
+
 function chance($percentage): bool
 {
     return rand() % 100 < $percentage;
@@ -124,8 +128,10 @@ function showUserMenu(Character $player, Character $enemy): int
 {
     echo PHP_EOL . "========== CHOOSE YOUR ACTION ==========" . PHP_EOL;
     echo "You                | Enemy              " . PHP_EOL;
-    echo "Class: " . $player . "   | Class: " . $enemy . PHP_EOL;
-    echo "Health: " . $player->getHealth() . "         | Health :" . $enemy->getHealth() . PHP_EOL;
+    echo "Class: " . $player . "     | Class: " . $enemy . PHP_EOL;
+    echo "Health: " . $player->getHealth() . "         | Health: " . $enemy->getHealth() . PHP_EOL;
+    echo "Mana: " . $player->getMana() . "           | Mana: " . $enemy->getMana() . PHP_EOL;
+    echo "Type: " . $player->getType()->name . "         | Type: " . $enemy->getType()->name . PHP_EOL;
     echo "========================================" . PHP_EOL;
     echo "1 - Attack          3 - Heal" . PHP_EOL;
     echo "2 - Use spell" . PHP_EOL . PHP_EOL;

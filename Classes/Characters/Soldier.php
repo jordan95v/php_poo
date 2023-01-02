@@ -52,6 +52,6 @@ class Soldier extends PhysicalCharacter
 
     public function __toString()
     {
-        return "Le Soldat";
+        return "Soldier";
     }
 }

@@ -57,6 +57,6 @@ class Wizard extends MagicalCharacter
 
     public function __toString()
     {
-        return "Le Sorcier";
+        return "Wizard";
     }
 }

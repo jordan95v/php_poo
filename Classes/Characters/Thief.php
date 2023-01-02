@@ -56,6 +56,6 @@ class Thief extends PhysicalCharacter
 
     public function __toString()
     {
-        return "Le Voleur";
+        return "Thief";
     }
 }

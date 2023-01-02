@@ -47,6 +47,16 @@ abstract class Character
         return $this->magicalDamages;
     }
 
+    public function getAtkSpell(): Spell
+    {
+        return $this->atkSpell;
+    }
+
+    public function getHealSpell(): Spell
+    {
+        return $this->healSpell;
+    }
+
     public function getDefense(): float
     {
         $def = $this->defense;
@@ -89,7 +99,7 @@ abstract class Character
             case Type::WATER:
                 switch ($atkType) {
                     case Type::FIRE:
-                        $damages *= 0.5;
+                        $damages *= 0.75;
                         break;
                     case Type::PLANT:
                         $damages *= 2;
@@ -98,7 +108,7 @@ abstract class Character
             case Type::FIRE:
                 switch ($atkType) {
                     case Type::WATER:
-                        $damages *= 0.5;
+                        $damages *= 0.75;
                         break;
                     case Type::PLANT:
                         $damages *= 2;
@@ -110,12 +120,13 @@ abstract class Character
                         $damages *= 2;
                         break;
                     case Type::WATER:
-                        $damages *= 0.5;
+                        $damages *= 0.75;
                         break;
                 }
         }
 
         $damagesTaken = $damages - $damages * $this->getDefense();
+        echo $this . " receive " . $damagesTaken . " damages !" . PHP_EOL;
         if ($damagesTaken > $this->health) {
             $this->health = 0;
         } else {
