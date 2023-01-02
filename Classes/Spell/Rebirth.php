@@ -9,6 +9,6 @@ class Rebirth extends Spell
 {
     public function __construct()
     {
-        parent::__construct("Rebirth", "This is a basic heal.", 20, SpellType::HEAL);
+        parent::__construct("Rebirth", "This is a basic heal.", 20, 8, SpellType::HEAL);
     }
 }

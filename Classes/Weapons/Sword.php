@@ -8,6 +8,6 @@ class Sword extends PhysicalWeapon
 {
     public function __construct()
     {
-        parent::__construct("The big sword", "Sword used by trained soldier", 25);
+        parent::__construct("Big sword", "Sword used by trained soldier", 25);
     }
 }

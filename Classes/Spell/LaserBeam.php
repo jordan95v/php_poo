@@ -9,6 +9,6 @@ class LaserBeam extends Spell
 {
     public function __construct()
     {
-        parent::__construct("Laser Beam", "This is a laser beam.", 20, SpellType::ATK);
+        parent::__construct("Laser Beam", "This is a laser beam.", 20, 12, SpellType::ATK);
     }
 }

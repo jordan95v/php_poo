@@ -49,14 +49,36 @@ abstract class Character
 
     public function getDefense(): float
     {
-        if ($this->defense > 100) return 1;
-
-        return $this->defense / 100;
+        $def = $this->defense;
+        if ($this->defSpell) {
+            $def += $this->defSpell->getValue();
+        }
+        if ($def > 100) {
+            return 1;
+        }
+        return $def / 100;
     }
+
     public function attack(Character $character): void
     {
-        // echo "{$this} attaque ".lcfirst($character).($this->weapon ? " avec ".lcfirst($this->weapon->getName()) : " à mains nues").PHP_EOL;
         $character->takesDamages($this->getPhysicalDamages(), $this->getMagicalDamages(), $character->getType());
+    }
+
+    public function attackSpell(Character $character): void
+    {
+        // echo "{$this} attaque ".lcfirst($character).($this->weapon ? " avec ".lcfirst($this->weapon->getName()) : " à mains nues").PHP_EOL;
+        if ($this->atkSpell) {
+            $character->takesDamages(0, $this->atkSpell->getValue(), $character->getType());
+            $this->mana -= $this->atkSpell->getCost();
+        }
+    }
+
+    public function heal(): void
+    {
+        if ($this->healSpell) {
+            $this->health += $this->healSpell->getValue();
+            $this->mana -= $this->atkSpell->getCost();
+        }
     }
 
     public function takesDamages(float $physicalDamages, float $magicalDamages, Type $atkType): void
@@ -94,7 +116,6 @@ abstract class Character
         }
 
         $damagesTaken = $damages - $damages * $this->getDefense();
-
         if ($damagesTaken > $this->health) {
             $this->health = 0;
         } else {

@@ -9,6 +9,6 @@ class Warmog extends Spell
 {
     public function __construct()
     {
-        parent::__construct("Warmog", "Good armor.", 0, SpellType::DEF);
+        parent::__construct("Warmog", "Good armor.", 0, 12, SpellType::DEF);
     }
 }

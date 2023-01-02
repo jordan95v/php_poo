@@ -10,6 +10,7 @@ abstract class Spell
         protected string $name,
         protected string $description,
         protected int $manaCost,
+        protected int $value,
         protected SpellType $spellType
     ) {
     }
@@ -17,6 +18,16 @@ abstract class Spell
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getValue(): int
+    {
+        return $this->value;
+    }
+
+    public function getCost(): int
+    {
+        return $this->manaCost;
     }
 
     public function getDescription(): string

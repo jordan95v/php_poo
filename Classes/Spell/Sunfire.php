@@ -9,6 +9,6 @@ class Sunfire extends Spell
 {
     public function __construct()
     {
-        parent::__construct("Sunfire", "It burns.", 0, SpellType::DEF);
+        parent::__construct("Sunfire", "It burns.", 0, 15, SpellType::DEF);
     }
 }
