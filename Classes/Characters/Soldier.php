@@ -10,8 +10,8 @@ class Soldier extends PhysicalCharacter
     {
         parent::__construct(
             health: 32,
-            defense: 60, 
-            physicalDamages: 8, 
+            defense: 60,
+            physicalDamages: 8,
             magicalDamages: 0,
             mana: 50,
             manaRegen: 10,
@@ -41,7 +41,7 @@ class Soldier extends PhysicalCharacter
     public function regenMana()
     {
         $this->mana += $this->manaRegen;
-        if($this->mana > 50){
+        if ($this->mana > 50) {
             $this->mana = 50;
         }
     }

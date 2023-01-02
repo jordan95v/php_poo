@@ -7,12 +7,12 @@ use Classes\Enum\Type;
 abstract class Character
 {
     public function __construct(
-        private float $health = 29,
-        private float $defense = 60,
-        protected float $physicalDamages = 9,
-        protected float $magicalDamages = 9,
-        protected float $mana = 100,
-        protected float $manaRegen = 10,
+        private float $health,
+        private float $defense,
+        protected float $physicalDamages,
+        protected float $magicalDamages,
+        protected float $mana,
+        protected float $manaRegen,
         protected ?Spell $atkSpell,
         protected ?Spell $defSpell,
         protected ?Spell $healSpell,
@@ -37,12 +37,12 @@ abstract class Character
     {
         return $this->health;
     }
-    
+
     public function getPhysicalDamages(): float
     {
         return $this->physicalDamages;
     }
-    
+
     public function getMagicalDamages(): float
     {
         return $this->magicalDamages;
@@ -64,9 +64,9 @@ abstract class Character
     {
         $damages = $physicalDamages + $magicalDamages;
 
-        switch($this->type){
+        switch ($this->type) {
             case Type::WATER:
-                switch($atkType){
+                switch ($atkType) {
                     case Type::FIRE:
                         $damages *= 0.5;
                         break;
@@ -75,7 +75,7 @@ abstract class Character
                         break;
                 }
             case Type::FIRE:
-                switch($atkType){
+                switch ($atkType) {
                     case Type::WATER:
                         $damages *= 0.5;
                         break;
@@ -84,7 +84,7 @@ abstract class Character
                         break;
                 }
             case Type::PLANT:
-                switch($atkType){
+                switch ($atkType) {
                     case Type::FIRE:
                         $damages *= 2;
                         break;
@@ -95,7 +95,7 @@ abstract class Character
         }
 
         $damagesTaken = $damages - $damages * $this->getDefense();
-        
+
         if ($damagesTaken > $this->health) {
             $this->health = 0;
         } else {
