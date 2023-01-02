@@ -13,6 +13,11 @@ use Classes\Characters\Thief;
 use Classes\Characters\Wizard;
 use Classes\Enum\Type;
 use Classes\Spell\FireBall;
+use Classes\Spell\LaserBeam;
+use Classes\Spell\Sunfire;
+use Classes\Spell\Thornmail;
+use Classes\Spell\Warmog;
+use Classes\Spell\WaterCannon;
 
 $SPELL_TYPE = ["offensive", "defensive", "healing"];
 
@@ -55,17 +60,22 @@ function createSpell(string $spellType, int $choice): ?Spell
                     return new FireBall();
                     break;
                 case 2:
+                    return new WaterCannon();
                     break;
                 case 3:
+                    return new LaserBeam();
                     break;
             }
         case "defensive":
             switch ($choice) {
                 case 1:
+                    return new Thornmail();
                     break;
                 case 2:
+                    return new Sunfire();
                     break;
                 case 3:
+                    return new Warmog();
                     break;
             }
         case "healing":
@@ -89,7 +99,7 @@ function spellSelection(string $spellType): Spell
                 echo "1 - Fire Ball" . PHP_EOL . "2 - Water Cannon" . PHP_EOL . "3 - Laser Beam" . PHP_EOL;
                 break;
             case "defensive":
-                echo "1 - Thornmail" . PHP_EOL . "2 - Shield of light" . PHP_EOL . "3 - Dirt Armor" . PHP_EOL;
+                echo "1 - Thornmail" . PHP_EOL . "2 - Sunfire Cape" . PHP_EOL . "3 - Warmog" . PHP_EOL;
                 break;
             case "healing":
                 echo "1 - Heal" . PHP_EOL . "2 - Rebirth" . PHP_EOL . "3 - Restauration" . PHP_EOL;

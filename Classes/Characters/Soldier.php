@@ -29,8 +29,12 @@ class Soldier extends PhysicalCharacter
     {
         $baseDamages = parent::getPhysicalDamages();
 
+        if ($this->hasWeapon()) {
+            $baseDamages += $this->weapon->applyBonus($baseDamages);
+        }
+
         if (chance(10)) {
-            // echo "{$this} inflige un coup critique !".PHP_EOL;
+            echo "{$this} inflige un coup critique !" . PHP_EOL;
             return $baseDamages * 2;
         }
         return $baseDamages;

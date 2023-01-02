@@ -5,10 +5,10 @@ namespace Classes\Spell;
 use Classes\Abstracts\Spell;
 use Classes\Enum\SpellType;
 
-class FireBall extends Spell
+class WaterCannon extends Spell
 {
     public function __construct()
     {
-        parent::__construct("Fire ball", "This is a fire ball.", 20, SpellType::ATK);
+        parent::__construct("Water Cannon", "Best Tortank's spell in Pokemon.", 20, SpellType::ATK);
     }
 }
