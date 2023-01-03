@@ -77,9 +77,9 @@ while (true) {
                 $notEnoughtMana = true;
                 break;
             }
-            $health = $player->getHealth();
+            $health = $user->getHealth();
             $user->heal();
-            echo "You healed yourself of " . $player->getHealth() - $health . " HP !" . PHP_EOL;
+            echo "You healed yourself of " . $user->getHealth() - $health . " HP !" . PHP_EOL;
             break;
     }
     if ($notEnoughtMana) {
@@ -89,7 +89,7 @@ while (true) {
 
     if (
         $enemy->getHealth() < $enemy->getHealth() * 0.15 &&
-        $enemy->getMana() < $enemy->getHealSpell()->getCost()
+        $enemy->getMana() > $enemy->getHealSpell()->getCost()
     ) {
         $enemy->heal();
     } else {
