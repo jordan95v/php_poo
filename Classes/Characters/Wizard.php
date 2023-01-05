@@ -31,7 +31,7 @@ class Wizard extends MagicalCharacter
         }
 
         if (chance(10)) {
-            echo "{$this} inflige des dégats magiques critiques !" . PHP_EOL;
+            echo "{$this} deal a critical hit !" . PHP_EOL;
             return $baseDamages * 2;
         }
         return $baseDamages;
@@ -40,7 +40,7 @@ class Wizard extends MagicalCharacter
     public function takesDamages(float $physicalDamages, float $magicalDamages, $type): void
     {
         if (chance(10)) {
-            echo "{$this} subit moins de dégats grâce à la chance..." . PHP_EOL;
+            echo "{$this} takes less damage thanks to chance." . PHP_EOL;
             parent::takesDamages($physicalDamages * 0.9, $magicalDamages * 0.9, $type);
         } else {
             parent::takesDamages($physicalDamages, $magicalDamages, $type);

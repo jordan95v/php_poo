@@ -40,7 +40,7 @@ class Thief extends PhysicalCharacter
     public function getDefense(): float
     {
         if (chance(10)) {
-            echo "{$this} esquive l'attaque !" . PHP_EOL;
+            echo "{$this} edodged the attack !" . PHP_EOL;
             return 1;
         }
         return parent::getDefense();

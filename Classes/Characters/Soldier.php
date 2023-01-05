@@ -31,7 +31,7 @@ class Soldier extends PhysicalCharacter
         }
 
         if (chance(10)) {
-            echo "{$this} inflige un coup critique !" . PHP_EOL;
+            echo "{$this} ideal a critical hit !" . PHP_EOL;
             return $baseDamages * 2;
         }
         return $baseDamages;

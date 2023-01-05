@@ -95,17 +95,18 @@ while (true) {
     } else {
         switch (rand(1, 2)) {
             case 1:
-                if ($enemy->getMana() < $enemy->getAtkSpell()->getCost()) {
-                    echo "The enemy attacks you !" . PHP_EOL;
-                    $enemy->attack($player);
-                } else {
+                echo "The enemy attacks you !" . PHP_EOL;
+                $enemy->attack($player);
+                break;
+            case 2:
+                if ($enemy->getMana() > $enemy->getAtkSpell()->getCost()) {
                     echo "The enemy use his spell !" . PHP_EOL;
                     $enemy->attackSpell($user);
                 }
-                break;
-            case 2:
-                echo "The enemy use his spell !" . PHP_EOL;
-                $enemy->attackSpell($user);
+                else {
+                    echo "The enemy attacks you !" . PHP_EOL;
+                    $enemy->attack($player);
+                }
         }
     }
     $enemy->regenMana();
