@@ -6,10 +6,11 @@ require_once('./functions.php');
 use Classes\Characters\Soldier;
 use Classes\Characters\Thief;
 use Classes\Characters\Wizard;
+use Classes\Enum\SpellType;
 use Classes\Enum\Type;
 
 
-$SPELL_TYPE = ["offensive", "defensive", "healing"];
+$SPELL_TYPE = [SpellType::ATK, SpellType::DEF, SpellType::HEAL];
 
 $class_choice = characterSelection();
 $spells = [];
@@ -54,6 +55,7 @@ $enemies = [
     new Wizard(...$randed_spell, type: $randed_type)
 ];
 $enemy = $enemies[array_rand($enemies)];
+$heal_below = $enemy->getHealth() * 0.15;
 
 while (true) {
     $notEnoughtMana = false;
@@ -88,24 +90,24 @@ while (true) {
     $user->regenMana();
 
     if (
-        $enemy->getHealth() < $enemy->getHealth() * 0.15 &&
+        $enemy->getHealth() < $heal_below &&
         $enemy->getMana() > $enemy->getHealSpell()->getCost()
     ) {
+        echo $enemy . "just healed himself" . PHP_EOL;
         $enemy->heal();
     } else {
         switch (rand(1, 2)) {
             case 1:
                 echo "The enemy attacks you !" . PHP_EOL;
-                $enemy->attack($player);
+                $enemy->attack($user);
                 break;
             case 2:
                 if ($enemy->getMana() > $enemy->getAtkSpell()->getCost()) {
                     echo "The enemy use his spell !" . PHP_EOL;
                     $enemy->attackSpell($user);
-                }
-                else {
+                } else {
                     echo "The enemy attacks you !" . PHP_EOL;
-                    $enemy->attack($player);
+                    $enemy->attack($user);
                 }
         }
     }
@@ -118,7 +120,7 @@ while (true) {
         echo PHP_EOL . "You won the battle ! Congrats :)" . PHP_EOL;
         break;
     } else if (!$userAlive && $enemyAlive) {
-        echo "You died :(";
+        echo PHP_EOL . "You died :(" . PHP_EOL;
         break;
     }
 }

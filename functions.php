@@ -11,6 +11,7 @@ use Classes\Spell\Thornmail;
 use Classes\Spell\Warmog;
 use Classes\Spell\WaterCannon;
 use Classes\Abstracts\Spell;
+use Classes\Enum\SpellType;
 
 define("ATK_SPELL", [new FireBall(), new WaterCannon(), new LaserBeam()]);
 define("DEF_SPELL", [new Sunfire(), new Thornmail(), new Warmog()]);
@@ -57,10 +58,10 @@ function typeSelection(): int
     }
 }
 
-function createSpell(string $spellType, int $choice): Spell
+function createSpell(SpellType $spellType, int $choice): Spell
 {
     switch ($spellType) {
-        case "offensive":
+        case SpellType::ATK:
             switch ($choice) {
                 case 1:
                     return new FireBall();
@@ -72,7 +73,7 @@ function createSpell(string $spellType, int $choice): Spell
                     return new LaserBeam();
                     break;
             }
-        case "defensive":
+        case SpellType::DEF:
             switch ($choice) {
                 case 1:
                     return new Thornmail();
@@ -84,7 +85,7 @@ function createSpell(string $spellType, int $choice): Spell
                     return new Warmog();
                     break;
             }
-        case "healing":
+        case SpellType::HEAL:
             switch ($choice) {
                 case 1:
                     return new Heal();
@@ -99,18 +100,20 @@ function createSpell(string $spellType, int $choice): Spell
     }
 }
 
-function spellSelection(string $spellType): Spell
+function spellSelection(SpellType $spellType): Spell
 {
     while (true) {
-        echo "Now select your " . $spellType . " spell !" . PHP_EOL;
         switch ($spellType) {
-            case "offensive":
-                echo "1 - Fire Ball" . PHP_EOL . "2 - Water Cannon" . PHP_EOL . "3 - Laser Beam" . PHP_EOL;
+            case SpellType::ATK:
+            echo "Now select your offensive spell !" . PHP_EOL;
+            echo "1 - Fire Ball" . PHP_EOL . "2 - Water Cannon" . PHP_EOL . "3 - Laser Beam" . PHP_EOL;
                 break;
-            case "defensive":
+            case SpellType::DEF:
+                echo "Now select your defensive spell !" . PHP_EOL;
                 echo "1 - Thornmail" . PHP_EOL . "2 - Sunfire Cape" . PHP_EOL . "3 - Warmog" . PHP_EOL;
                 break;
-            case "healing":
+            case SpellType::HEAL:
+                echo "Now select your healing spell !" . PHP_EOL;
                 echo "1 - Heal" . PHP_EOL . "2 - Rebirth" . PHP_EOL . "3 - Restauration" . PHP_EOL;
                 break;
         }
@@ -119,6 +122,21 @@ function spellSelection(string $spellType): Spell
         if ($spell_choice <= 3 && $spell_choice > 0) {
             echo PHP_EOL;
             return createSpell($spellType, $spell_choice);
+        }
+        echo PHP_EOL . "Please select a correct answer." . PHP_EOL;
+    }
+}
+
+
+function weaponSelection(): int{
+    while (true) {
+        echo "Now select your weapon". PHP_EOL;
+        echo "1 - Cultass" . PHP_EOL . "2 - RodOfAges" . PHP_EOL . "3 - BF Sword" . PHP_EOL. "4 - No Weapon" . PHP_EOL;
+        $weapon_choice = readline("Enter your choice: ");
+
+        if ($weapon_choice <= 4 && $weapon_choice > 0) {
+            echo PHP_EOL;
+            return $weapon_choice;
         }
         echo PHP_EOL . "Please select a correct answer." . PHP_EOL;
     }
