@@ -8,7 +8,9 @@ use Classes\Characters\Thief;
 use Classes\Characters\Wizard;
 use Classes\Enum\SpellType;
 use Classes\Enum\Type;
-
+use Classes\Weapons\BFSword;
+use Classes\Weapons\Cutlass;
+use Classes\Weapons\RodOfAges;
 
 $SPELL_TYPE = [SpellType::ATK, SpellType::DEF, SpellType::HEAL];
 
@@ -45,6 +47,23 @@ switch ($class_choice) {
         break;
 }
 
+switch (weaponSelection()) {
+    case 1:
+        $weapon = new Cutlass();
+        break;
+    case 2:
+        $weapon = new RodOfAges();
+        break;
+    case 3:
+        $weapon = new BFSword();
+        break;
+    case 4:
+        $weapon = null;
+        break;
+}
+
+$user->takesWeapon($weapon);
+
 $randed_spell = [ATK_SPELL[array_rand(ATK_SPELL)], DEF_SPELL[array_rand(DEF_SPELL)], HEAL_SPELL[array_rand(HEAL_SPELL)]];
 $types = Type::cases();
 $randed_type = $types[array_rand($types)];
@@ -56,6 +75,7 @@ $enemies = [
 ];
 $enemy = $enemies[array_rand($enemies)];
 $heal_below = $enemy->getHealth() * 0.15;
+$userBaseHealth = $user->getHealth();
 
 while (true) {
     $notEnoughtMana = false;
@@ -80,8 +100,16 @@ while (true) {
                 break;
             }
             $health = $user->getHealth();
-            $user->heal();
-            echo "You healed yourself of " . $user->getHealth() - $health . " HP !" . PHP_EOL;
+            if ($health < $userBaseHealth - $user->getHealSpell()->getValue())
+            {
+                $user->heal();
+                echo "You healed yourself of " . $user->getHealth() - $health . " HP !" . PHP_EOL;
+            }
+            else
+            {
+                echo "You cannot heal yourself !". PHP_EOL;
+                $notEnoughtMana = true;
+            }
             break;
     }
     if ($notEnoughtMana) {
